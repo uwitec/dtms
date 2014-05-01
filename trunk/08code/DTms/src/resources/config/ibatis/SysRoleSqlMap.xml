@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="sysRoleSql">
+	<typeAlias alias="sysRole"
+		type="com.ue.model.system.SysRole" />
+	<resultMap id="sysRoleResult" class="sysRole">
+		<result property="sysRoleId" column="SYS_ROLE_ID" />
+		<result property="sysRoleName" column="SYS_ROLE_NAME" />
+		<result property="sysRoleJur" column="SYS_ROLE_JUR" />
+		<result property="sysRoleContent" column="SYS_ROLE_CONTENT" />
+	</resultMap>
+	
+	<!-- 以对象方式返回列表 -->
+	<select id="getByList" resultMap="sysRoleResult">
+		<![CDATA[
+		select *
+	        from SYS_ROLE 
+	    ]]>
+		order by SYS_ROLE_ID desc
+	</select>
+	<select id="getById" resultMap="sysRoleResult">
+		<![CDATA[
+		select *
+	        from SYS_ROLE where SYS_ROLE_ID = #sysRoleId#
+	    ]]>
+	</select>
+	<insert id="save" parameterClass="sysRole">
+		<![CDATA[
+        INSERT INTO
+        SYS_ROLE (
+        	SYS_ROLE_NAME ,
+        	SYS_ROLE_JUR,
+        	SYS_ROLE_CONTENT
+        ) VALUES (
+        	#sysRoleName# ,
+        	#sysRoleJur# ,
+        	#sysRoleContent#
+        )
+    ]]>
+	</insert>
+	<update id="updates" parameterClass="sysRole"> 
+	<![CDATA[
+        UPDATE SYS_ROLE SET
+        	SYS_ROLE_NAME = #sysRoleName#,
+        	SYS_ROLE_JUR = #sysRoleJur#,
+        	SYS_ROLE_CONTENT = #sysRoleContent#
+        WHERE 
+	       SYS_ROLE_ID = #sysRoleId#
+    ]]>
+	</update>
+	<delete id="del" parameterClass="java.lang.Integer">
+		<![CDATA[
+        delete from SYS_ROLE where
+        SYS_ROLE_ID = #sysRoleId#
+    	]]>
+	</delete>
+	<select id="count" resultClass="java.lang.Integer">
+		<![CDATA[
+        select count(*) from SYS_ROLE where SYS_ROLE_JUR like '%$"sysRoleJur"$%'
+    	]]>
+	</select>
+</sqlMap>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    					http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd"
+	default-autowire="byName" default-lazy-init="false">
+
+	<bean id="baseDao" class="com.common.base.BaseDao">
+		<property name="sqlMapClient" ref="sqlMapClient"></property>
+	</bean>
+	<bean id="baseService" class="com.common.base.BaseService">
+		<property name="baseDao" ref="baseDao"></property>
+	</bean>
+	
+	<bean id="sysUserService" class="com.ue.service.system.impl.SysUserServiceImpl">
+	</bean>
+	
+	<bean id="sysRoleService" class="com.ue.service.system.impl.SysRoleServiceImpl">
+	</bean>
+	<bean id="sysJurService" class="com.ue.service.system.impl.SysJurServiceImpl">
+	</bean>
+	<bean id="siteConfigService" class="com.ue.service.system.impl.SiteConfigServiceImpl">
+	</bean>
+	
+</beans>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="sysUsersql">
+	<typeAlias alias="sysUser"
+		type="com.ue.model.system.SysUser" />
+	<resultMap id="sysUserResult" class="sysUser">
+		<result property="sysUserId" column="SYS_USER_ID" />
+		<result property="sysRoleId" column="SYS_ROLE_ID" />
+		<result property="sysUserName" column="SYS_USER_NAME" />
+		<result property="sysUserPwd" column="SYS_USER_PWD" />
+		<result property="loginDate" column="LOGIN_DATE" />
+		<result property="loginIp" column="LOGIN_IP" />
+		<result property="sysUserState" column="SYS_USER_STATE" />
+	</resultMap>
+
+<!-- 用于条件查询 -->
+	<sql id="dynamicWhere">
+		<dynamic prepend="WHERE">
+			<isNotEmpty prepend="AND" property="sysRoleId">
+				SYS_ROLE_ID = #sysRoleId#
+			</isNotEmpty>
+		</dynamic>
+	</sql>
+	
+	<select id="getByName" resultMap="sysUserResult">
+		<![CDATA[
+		select * from SYS_USER where SYS_USER_NAME =#sysUserName#
+		  ]]>
+	</select>
+	<select id="getById" resultMap="sysUserResult">
+		
+		<![CDATA[
+		select * 
+	        from SYS_USER 
+	        where 
+		        SYS_USER_ID = #sysUserId#
+	    ]]>
+	</select>
+	<!-- 以对象方式返回列表 -->
+	<select id="pageSelect" resultMap="sysUserResult">
+		<![CDATA[
+		select *
+	        from SYS_USER 
+	    ]]>
+	    <include refid="dynamicWhere" />
+		order by SYS_USER_ID desc
+	</select>
+	<!-- 统计记录总数 -->
+	<select id="count" resultClass="java.lang.Integer">
+		<![CDATA[
+        select count(*) from SYS_USER
+    	]]>
+    <include refid="dynamicWhere" />
+	</select>
+	<insert id="insert" parameterClass="sysUser">
+		<![CDATA[
+        INSERT INTO
+        SYS_USER (
+        	SYS_ROLE_ID ,
+        	SYS_USER_NAME,
+        	SYS_USER_PWD,
+        	LOGIN_DATE,
+        	LOGIN_IP,
+        	SYS_USER_STATE
+        ) VALUES (
+        	#sysRoleId# ,
+        	#sysUserName# ,
+        	#sysUserPwd# ,
+        	#loginDate# ,
+        	#loginIp# ,
+        	#sysUserState#
+        )
+    ]]>
+	</insert>
+	<update id="updates" parameterClass="sysUser"> 
+	<![CDATA[
+        UPDATE SYS_USER SET
+	       SYS_ROLE_ID = #sysRoleId# ,
+        	SYS_USER_NAME = #sysUserName#,
+        	SYS_USER_PWD = #sysUserPwd#,
+        	LOGIN_DATE = #loginDate#,
+        	LOGIN_IP = #loginIp#,
+        	SYS_USER_STATE = #sysUserState#
+        WHERE 
+	       SYS_USER_ID = #sysUserId#
+    ]]>
+	</update>
+	<delete id="deleteUserId" parameterClass="java.lang.Integer">
+		<![CDATA[
+        delete from SYS_USER where
+        SYS_USER_ID = #sysUserId#
+    	]]>
+	</delete>
+
+</sqlMap>

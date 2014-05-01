@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="siteConfigSql">
+	<typeAlias alias="siteConfig"
+		type="com.ue.model.system.SiteConfig" />
+	<resultMap id="siteConfigResult" class="siteConfig">
+		<result property="configId" column="ConfigId" />
+		<result property="siteName" column="SiteName" />
+		<result property="siteUrl" column="SiteUrl" />
+		<result property="siteLogo" column="SiteLogo" />
+		<result property="siteIcp" column="SiteIcp" />
+		<result property="siteClose" column="SiteClose" />
+		<result property="siteCloseNote" column="SiteCloseNote" />
+		<result property="siteMeta1" column="SiteMeta1" />
+		<result property="siteMeta2" column="SiteMeta2" />
+		<result property="indNewZp" column="IndNewZp" />
+		<result property="indNewJl" column="IndNewJl" />
+		<result property="siteQq" column="SiteQq" />
+		<result property="newPerSh" column="NewPerSh" />
+		<result property="newComSh" column="NewComSh" />
+		<result property="perRegClose" column="PerRegClose" />
+		<result property="perRegCloseNote" column="PerRegCloseNote" />
+		<result property="comRegClose" column="ComRegClose" />
+		<result property="comRegCloseNote" column="ComRegCloseNote" />
+		<result property="regNoName" column="RegNoName" />
+		<result property="newPerSendFlag" column="NewPerSendFlag" />
+		<result property="newPerSend" column="NewPerSend" />
+		<result property="newComSendFlag" column="NewComSendFlag" />
+		<result property="newComSend" column="NewComSend" />
+		<result property="mailSmtp" column="MailSmtp" />
+		<result property="mailUserName" column="MailUserName" />
+		<result property="mailPassWord" column="MailPassWord" />
+		<result property="jianjie1" column="Jianjie1" />
+		<result property="jianjie2" column="Jianjie2" />
+		<result property="jianjie3" column="Jianjie3" />
+		<result property="jianjie4" column="Jianjie4" />
+		<result property="jianjie5" column="Jianjie5" />
+		<result property="jianjie6" column="Jianjie6" />
+		<result property="jianjie7" column="Jianjie7" />
+		<result property="companyName" column="CompanyName" />
+		<result property="addr" column="Addr" />
+		<result property="tel" column="Tel" />
+		<result property="fax" column="Fax" />
+		<result property="email" column="Email" />
+    
+  
+	</resultMap>
+
+	<select id="getById" resultMap="siteConfigResult">
+		
+		<![CDATA[
+		select * 
+	        from siteConfig 
+	        where 
+		        ConfigId = #configId#
+	    ]]>
+	</select>
+	
+	<insert id="insert" parameterClass="siteConfig">
+		<![CDATA[
+        INSERT INTO
+        siteConfig (
+        	SiteName ,
+        	SiteUrl,
+        	SiteLogo,
+        	SiteIcp,
+        	SiteClose,
+        	SiteCloseNote
+        ) VALUES (
+        	#siteName# ,
+        	#siteUrl# ,
+        	#siteLogo# ,
+        	#siteIcp# ,
+        	#siteClose# ,
+        	#siteCloseNote#
+        )
+    ]]>
+	</insert>
+	<update id="updates" parameterClass="siteConfig"> 
+	<![CDATA[
+        UPDATE siteConfig SET
+	       	SiteName = #siteName#,
+	       	SiteUrl = #siteUrl#,
+	       	SiteLogo = #siteLogo#,
+	       	SiteIcp = #siteIcp#,
+	       	SiteClose = #siteClose#,
+	       	SiteCloseNote = #siteCloseNote#,
+	       	SiteMeta1 = #siteMeta1#,
+	       	SiteMeta2 = #siteMeta2#,
+	       	IndNewZp = #indNewZp#,
+	       	IndNewJl = #indNewJl#,
+	       	SiteQq = #siteQq#,
+	       	NewPerSh = #newPerSh#,
+	       	NewComSh = #newComSh#,
+	       	PerRegClose = #perRegClose#,
+	       	PerRegCloseNote = #perRegCloseNote#,
+	       	
+	       	ComRegClose = #comRegClose#,
+	       	ComRegCloseNote = #comRegCloseNote#,
+	       	RegNoName = #regNoName#,
+	       	NewPerSendFlag = #newPerSendFlag#,
+	       	NewPerSend = #newPerSend#,
+	       	NewComSendFlag = #newComSendFlag#,
+	       	NewComSend = #newComSend#,
+	       	MailSmtp = #mailSmtp#,
+	       	MailUserName = #mailUserName#,
+	       	MailPassWord = #mailPassWord#,
+	       	Jianjie1 = #jianjie1#,
+	       	Jianjie2 = #jianjie2#,
+	       	Jianjie3 = #jianjie3#,
+	       	Jianjie4 = #jianjie4#,
+	       	Jianjie5 = #jianjie5#,
+	       	Jianjie6 = #jianjie6#,
+	       	Jianjie7 = #jianjie7#,
+			CompanyName = #companyName#,
+			Addr = #addr#,
+			Tel = #tel#,
+			Fax = #fax#,
+			Email = #email#
+        WHERE 
+	        ConfigId = #configId#
+    ]]>
+	</update>
+
+</sqlMap>

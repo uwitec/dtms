@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd"
+	default-autowire="byName" default-lazy-init="false">
+
+	<!-- 数据源配置 -->
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName"
+			value="com.mysql.jdbc.Driver">
+		</property>
+		 
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/dtms?useUnicode=true&amp;characterEncoding=UTF-8">
+		</property>
+		
+		<property name="username" value="root"></property>
+		<property name="password" value="Quchengbo06"></property>
+	</bean>
+	
+	<!-- Transaction manager for a single JDBC DataSource -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+		 <aop:config>
+        <!--  切入点指明了在执行Service的所有方法时产生事务拦截操作 -->
+        <aop:pointcut id="daoMethods"
+            expression="execution(* com.ue.service.*.*(..))" />
+       <!--  定义了将采用何种拦截操作，这里引用到 txAdvice  -->
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="daoMethods" />
+    </aop:config>
+	<!-- 基本事务定义,使用transactionManager作事务管理,默认get* find*方法的事务为readonly,其余方法按默认设置-->
+		
+		<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="*" propagation="REQUIRED" />
+             <tx:method name="save*" propagation="REQUIRED"/>
+		     <tx:method name="del*" propagation="REQUIRED"/>
+		     <tx:method name="update*" propagation="REQUIRED"/>
+			<tx:method name="*" read-only="false"/>
+		</tx:attributes>
+		</tx:advice>
+	
+
+
+	<!-- spring配置ibatis -->
+	<bean id="sqlMapClient"
+		class="org.framework.ibatis.spring.SqlMapClientFactoryBean">
+		<!-- Mysql,Sqlserver通用ibatis配置文件 -->
+		<property name="configLocation"
+			value="classpath:/resources/config/ibatis/IbatisConfig.xml" />
+
+		<property name="mappingLocations">
+			<value>
+				classpath*:/resources/config/ibatis/**/*SqlMap.xml
+			</value>
+		</property>
+		
+		
+		<property name="dataSource" ref="dataSource" />
+		<!-- 指定数据库分页方言Dialect, 其它方言:OracleDialect,SQLServerDialect,SybaseDialect,DB2Dialect,PostgreSQLDialect,MySQLDialect,DerbyDialect-->
+		<property name="sqlExecutor">
+			<bean
+				class="org.framework.ibatis.sqlmap.executor.LimitSqlExecutor">
+				<property name="dialect">
+					<bean
+						class="org.framework.jdbc.dialect.MySQLDialect" />
+				</property>
+			</bean>
+		</property>
+		
+	</bean>
+	<!-- import service config -->
+	<import resource="applicationContext-framework.xml" />
+	<import resource="applicationContext-service.xml" />
+	<import resource="applicationContext-action.xml" />
+</beans>
