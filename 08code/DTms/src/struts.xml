@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<constant name="struts.action.extension" value="action,ue"></constant>
+
+   <package name="rootAction" extends="struts-default">
+	<action name="rootAction_*" class="com.ue.action.system.RootAction" method="{1}">
+			<result name="intdex">/ueadmin_ue/root-index.jsp</result>
+			<result name="login">/index.jsp</result>
+			<result name="success">/main.jsp</result>
+			<result name="logout">/index.jsp</result>
+			<result name="pwd">/ueadmin_ue/Admin/Admin_Edit.jsp</result>
+			<result name="pwdsuccess">/ueadmin_ue/Admin/Admin_Edit.jsp</result>
+			<result name="list">/ueadmin_ue/Admin/Admin_Manage.jsp</result>
+			<result name="mypower">/ueadmin_ue/Admin/Admin_Power_See.jsp</result>
+			<result name="save">/ueadmin_ue/Admin/Admin_Add.jsp</result>
+			
+	</action>
+	</package>
+	
+	<package name="sysRoleAction" extends="struts-default">
+	<action name="sysRoleAction_*" class="com.ue.action.system.SysRoleAction" method="{1}">
+			<result name="list">/ueadmin_ue/Admin/AdminType.jsp</result>		
+	</action>
+	</package>
+	
+	<package name="sysJurAction" extends="struts-default">
+	<action name="sysJurAction_*" class="com.ue.action.system.SysJurAction" method="{1}">
+		<result name="list">/ueadmin_ue/Admin/Admin_Power_List.jsp</result>	
+		<result name="add">/ueadmin_ue/Admin/Admin_Power.jsp</result>
+		<result name="updates">/ueadmin_ue/Admin/Admin_Power_edit.jsp</result>	
+		<result name="power">/ueadmin_ue/Admin/Admin_Type_Power.jsp</result>
+		<result name="role" type="redirectAction">/sysRoleAction!list</result>
+	</action>
+	</package>
+	
+	<package name="siteConfigAction" extends="struts-default">
+	<action name="siteConfigAction_*" class="com.ue.action.system.SiteConfigAction" method="{1}">
+			<result name="success">/ueadmin_ue/config/SiteConfig.jsp</result>
+	</action>
+	</package>
+
+	<!-- 网站前台控制 -->
+	<package name="webAction" extends="struts-default">
+	<action name="webAction_*" class="com.ue.action.io.WebAction" method="{1}">
+			<result name="index">/toIndex.jsp</result>
+	</action>
+	</package>
+</struts>
+
+
+
+
+
+
+
+
