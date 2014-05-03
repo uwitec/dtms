@@ -1,0 +1,161 @@
+body
+{
+margin:0px;
+font-size: 9pt;
+font-family: "Tahoma", "����";
+scrollbar-base-color:#808080;
+scrollbar-3dlight-color:#808080;
+scrollbar-highlight-color:#D4D0C8;
+scrollbar-face-color:#808080;
+scrollbar-arrow-color:#FFFFFF;
+scrollbar-shadow-color:#D4D0C8;
+scrollbar-darkshadow-color:#808080;
+scrollbar-track-color:#D4D0C8;
+}
+
+#login_body {
+	background:url(/ueadmin_ue/images/login.jpg) top center no-repeat;
+	background-color: #8aa4c7;
+}
+
+
+#login_div {
+	margin:0px auto;
+	margin-left:50px;
+	margin-top:80px;
+	width:600px;
+	cursor:default;
+	text-align:center;
+}
+
+#ligon_bulletin {
+	margin:0px auto;
+	margin-left:50px;
+	margin-top:200px;
+	height:50px;
+	cursor:default;
+	text-align:center;
+	color:#FFF;
+}
+
+#login_info {
+	width:290px;
+	height:170px;
+	float:left;
+	margin-top:55px;
+	margin-left:16px;
+	color:#FFF;
+}
+#user_name {
+	position: relative;
+	margin-left:225px;
+	clear:left;
+	color:#FFF;
+	text-align:left;
+}
+#local_net {
+	position: relative;
+	margin-left:225px;
+	clear:left;
+	color:#FFF;
+	text-align:left;
+}
+
+#password {
+	position: relative;
+	margin-left:225px;
+	color:#FFF;
+	text-align:left;
+}
+
+#ZT {
+	float:right;
+	clear:right;
+	width:268px;
+	height:26px;
+	color:#FFFFFF;
+	text-align:right;
+}
+
+#login_botton_div {
+
+	align:right;
+}
+
+#login_botton {
+	position: relative;
+	margin-right:6px;
+	float:left;
+	clear:right;
+	width:82px;
+	height:38px;
+	text-align:left;
+	background:url(/ueadmin_ue/images/login_button.gif) no-repeat left top;
+	cursor:hand;
+}
+
+
+
+#lostpass_botton {
+	margin-left:6px;
+	float:left;
+	clear:right;
+	width:82px;
+	height:19px;
+	text-align:left;
+	background:url(/ueadmin_ue/images/lostpass_button.gif) no-repeat left top;
+	cursor:hand;
+}
+
+input.login {
+	position: relative;
+	margin-right:6px;
+	float:left;
+	clear:right;
+	width:82px;
+	height:38px;
+	text-align:left;
+	background:url(/ueadmin_ue/images/login_button.gif) no-repeat left top;
+	cursor:hand;
+	border:0px;
+}
+
+input.lostpass {
+	margin-left:6px;
+	float:left;
+	clear:right;
+	width:82px;
+	height:19px;
+	text-align:left;
+	background:url(/ueadmin_ue/images/lostpass_button.gif) no-repeat left top;
+	cursor:hand;
+	border:0px;
+}
+
+.login_input {
+	border:1px solid #666;
+	padding:1px;
+	height:18px;
+	width:200px;
+}
+
+.login_select {
+	width:190px;
+}
+
+#alert{
+	float:right;
+	clear:right;
+	width:220px;
+	height:20px;
+	color:#FFFFFF;
+	text-align:left;
+	color:#FFF;
+}
+
+#Copyright {
+
+	margin-left:225px;
+	color:#003399;
+	padding-top:0px
+}
